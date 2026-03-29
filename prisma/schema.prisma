@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Club {
+  id           Int           @id @default(autoincrement())
+  name         String
+  category     String
+  description  String
+  tags         String        // JSON array stored as string
+  logo         String        @default("")
+  contactInfo  String        @default("")
+  memberCount  Int           @default(0)
+  requirements String        @default("")
+  fee          String        @default("免费")  // 团费信息：免费 / 50元/学期 等
+  createdAt    DateTime      @default(now())
+  matchResults MatchResult[]
+  applications Application[]
+}
+
+model Student {
+  id            Int            @id @default(autoincrement())
+  name          String
+  studentId     String         @unique
+  email         String         @default("")
+  phone         String         @default("")
+  major         String         @default("")
+  grade         String         @default("")
+  createdAt     DateTime       @default(now())
+  quizResponses QuizResponse[]
+  matchResults  MatchResult[]
+  applications  Application[]
+}
+
+model QuizResponse {
+  id            Int      @id @default(autoincrement())
+  studentId     Int
+  student       Student  @relation(fields: [studentId], references: [id])
+  answers       String   // JSON
+  extractedTags String   @default("[]") // JSON
+  createdAt     DateTime @default(now())
+}
+
+model MatchResult {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  student   Student  @relation(fields: [studentId], references: [id])
+  clubId    Int
+  club      Club     @relation(fields: [clubId], references: [id])
+  score     Float
+  reason    String
+  createdAt DateTime @default(now())
+}
+
+model Application {
+  id        Int      @id @default(autoincrement())
+  studentId Int
+  student   Student  @relation(fields: [studentId], references: [id])
+  clubId    Int
+  club      Club     @relation(fields: [clubId], references: [id])
+  status    String   @default("pending") // pending, reviewing, approved, rejected
+  intro     String   @default("")
+  createdAt DateTime @default(now())
+}

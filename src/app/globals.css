@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+:root {
+  --pink: #FFB5BA;
+  --pink-deep: #FF8A9C;
+  --blue: #A8D8FF;
+  --blue-deep: #5BA3D0;
+  --green: #B8E6B8;
+  --green-deep: #6CB46C;
+  --purple: #E6C6FF;
+  --purple-deep: #9B7CB6;
+  --yellow: #FFE4B5;
+  --yellow-deep: #D4A85A;
+  --text: #4A4A4A;
+  --text-light: #888;
+  --text-lighter: #999;
+  --bg: #FAFBFE;
+  --card-bg: rgba(255,255,255,0.7);
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-geist-sans);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+/* Macaron card */
+.macaron-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+  transition: all 0.4s ease;
+}
+.macaron-card:hover {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 50%, var(--blue) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.text-gradient-pink {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Float animations */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-float-medium { animation: float-medium 4s ease-in-out infinite; }
+
+/* Progress bar rainbow */
+.progress-rainbow {
+  background: linear-gradient(90deg, var(--pink) 0%, var(--blue) 50%, var(--green) 100%);
+}
+
+/* Macaron buttons */
+.btn-macaron {
+  background: linear-gradient(135deg, var(--pink) 0%, var(--yellow) 100%);
+  color: var(--text);
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s;
+}
+.btn-macaron:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(255,181,186,0.3);
+}
+.btn-macaron-blue {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+  color: var(--text);
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s;
+}
+.btn-macaron-blue:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 3px; }
+
+/* Chat bubble animations */
+@keyframes bounce-in {
+  0% { opacity: 0; transform: translateY(10px) scale(0.9); }
+  50% { opacity: 1; transform: translateY(-3px) scale(1.02); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes pulse-soft {
+  0%, 100% { box-shadow: 0 4px 15px rgba(255,181,186,0.3); }
+  50% { box-shadow: 0 4px 25px rgba(255,181,186,0.6); }
+}
+.animate-bounce-in { animation: bounce-in 0.4s ease-out; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
