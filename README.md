@@ -5,7 +5,6 @@
 ## 在线体验
 
 - 国际访问：https://club-match-platform-mocha.vercel.app
-- 国内访问：http://39.105.141.81:3000
 
 ## 核心功能
 
